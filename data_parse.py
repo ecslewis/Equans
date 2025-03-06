@@ -3,14 +3,14 @@ import datetime
 import pandas as pd
 
 
-#path
 file_path = 'data.csv'
 
 df = pd.read_csv(file_path)
 print("excel opened!")
+
+#delete column
 df=df.drop(columns=['ID', 'Parent'], axis=1, errors= 'ignore')
 
-#for index, text in df['Status'].items():
 
 #STRIP BEFORE |
 for index, text in df['Status'].items():
