@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Winners</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='confetti.js') }}"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+        }
+        h1 {
+            text-align: center;
+            width: 100%;
+            padding-left: 20px;
+        }
+        .button {
+            display: inline-block;
+            border-radius: 4px;
+            background-color: #f4511e;
+            border: none;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 28px;
+            padding: 20px;
+            width: 300px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .button span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+        .button span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+        .button:hover span {
+            padding-right: 25px;
+        }
+        .button:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+        img {
+            width: 25%; /* Adjust the width as needed */
+            margin-top: 2px; /* Adjust the margin as needed */
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            font-size: 20px;
+        }
+        li {
+            text-align: left;
+            width: 100%;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+     <img src="data:image/png;base64,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" alt="Image">
+
+    <h1>The winners are:</h1>
+    <br>
+    <ul>
+        {% for index, row in winners.iterrows() %}
+            <li>{{ loop.index }}. {{ row['Employee ID'] }} {{ row['First Name'] }} {{ row['Last Name'] }}</li>
+        {% endfor %}
+    </ul>
+    <form action="/draw" method="post">
+        <button class="button"><span>Draw Again</span></button>
+    </form>
+    <script>
+        const start = () => {
+            setTimeout(function() {
+                confetti.start();
+            }, 1000); // 1000 is time that after 1 second start the confetti (1000 = 1 sec)
+        };
+        const stop = () => {
+            setTimeout(function() {
+                confetti.stop();
+            }, 5000); // 5000 is time that after 5 seconds stop the confetti (5000 = 5 sec)
+        };
+        // Call both functions to start and stop the confetti
+        start();
+        stop();
+    </script>
+</body>
+</html>
