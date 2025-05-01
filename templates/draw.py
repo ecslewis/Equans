@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 def draw_winners(file_path, num_winners=5):
     xls = pd.ExcelFile(file_path)
-    df = pd.read_excel(xls, 'WE Mar.16.2025', header=0, skiprows=5)
+    df = pd.read_excel(xls, 'WE Mar.16.2025', header=0, skiprows=5) #date of week
 
     
     df['Attendance WE March 06th 2025'] = df['Attendance WE March 06th 2025'].str.strip()
